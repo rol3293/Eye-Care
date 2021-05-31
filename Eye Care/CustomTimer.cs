@@ -32,15 +32,20 @@ namespace Eye_Care
             if (!isCountingDown)
                 return;
 
+            // after every minutes, update tooltip text
             if (count % 60 == 0)
             {
                 remainingMin = (sec - count) / 60;
                 updateToolTipText(remainingMin);
             }
 
+            // when the countdown reached its time
             if (count == sec)
             {
+                // display notification
                 notifyIcon.ShowBalloonTip(0, "Eye Care", "Take a break form your screen", ToolTipIcon.Info);
+
+                // reset variables
                 count = 0;
                 remainingMin = sec / 60;
                 updateToolTipText(remainingMin);
