@@ -11,11 +11,11 @@ public class Form1 : System.Windows.Forms.Form
     {
         // check if there's already an instance running
         if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Length > 1)
-            { 
+        {
             MessageBox.Show("An instance of Eye care is already running");
             return;
         }
-            
+
         Application.Run(new MyCustomApplicationContext());
     }
 
@@ -44,7 +44,7 @@ public class MyCustomApplicationContext : ApplicationContext
         trayIcon.Visible = true;
 
         // start the timer
-        cTimer = new CustomTimer(trayIcon, 20*60);
+        cTimer = new CustomTimer(trayIcon, 20 * 60);
 
     }
 
