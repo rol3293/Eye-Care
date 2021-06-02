@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using Eye_Care;
@@ -7,18 +6,16 @@ using Eye_Care.Properties;
 
 public class Form1 : System.Windows.Forms.Form
 {
-    public static string path = @"c:\temp\lockfile";
     [STAThread]
     static void Main()
     {
         // check if there's already an instance running
-        if (File.Exists(path)) // if the lockfile exists, show message
-        {
+        if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Length > 1)
+            { 
             MessageBox.Show("An instance of Eye care is already running");
             return;
         }
             
-        File.Create(path).Close();
         Application.Run(new MyCustomApplicationContext());
     }
 
@@ -49,13 +46,6 @@ public class MyCustomApplicationContext : ApplicationContext
         // start the timer
         cTimer = new CustomTimer(trayIcon, 20*60);
 
-        // add event handler when the application exits
-        Application.ApplicationExit += new EventHandler(this.onApplicationExit);
-    }
-    void onApplicationExit(object sender, EventArgs e)
-    {
-        // delete the lockfile
-        File.Delete(Form1.path);
     }
 
     void Exit(object sender, EventArgs e)
