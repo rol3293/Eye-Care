@@ -43,7 +43,7 @@ namespace Eye_Care
             if (count == sec)
             {
                 // display notification
-                notifyIcon.ShowBalloonTip(0, "Eye Care", "Take a break form your screen", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(0, "Eye Care", "Take a break from your screen", ToolTipIcon.Info);
 
                 // reset variables
                 count = 0;
